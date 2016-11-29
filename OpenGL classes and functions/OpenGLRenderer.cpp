@@ -3,12 +3,11 @@
 //
 
 #include "OpenGLRenderer.h"
+#include "Shader.h"
 
-void OpenGLRenderer::render() {
-    glClearColor(0.0f,0.0f,0.0f,1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
-    glfwSwapBuffers(m_window);
-}
+Shader* shader;
+
+void temp_test();
 
 bool OpenGLRenderer::processAPI(float deltaTime) {
 
@@ -52,8 +51,20 @@ OpenGLRenderer::OpenGLRenderer() {
     {
         cout << "GLEW init failed!" << endl;
     }
+    temp_test();
 }
 
 OpenGLRenderer::~OpenGLRenderer() {
     glfwTerminate();
+    delete shader;
+}
+
+void OpenGLRenderer::render() {
+    glClearColor(0.0f,0.0f,0.0f,1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+    glfwSwapBuffers(m_window);
+}
+
+void temp_test(){
+    shader = new Shader("Shaders/vertex_shader.glsl","Shaders/fragment_shader.glsl");
 }

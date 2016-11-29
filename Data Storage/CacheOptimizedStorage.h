@@ -33,6 +33,7 @@ public:
 
     uint16_t size();
 
+    array<StorageItem<T>, SIZE>& getStorageRef() const;
 
 };
 
@@ -92,6 +93,11 @@ CacheOptimizedStorage<T,SIZE>::CacheOptimizedStorage() {
 template<typename T, uint16_t SIZE>
 uint16_t CacheOptimizedStorage<T, SIZE>::size() {
     return SIZE;
+}
+
+template<typename T, uint16_t SIZE>
+array<StorageItem<T>, SIZE> &CacheOptimizedStorage<T, SIZE>::getStorageRef() const {
+    return m_items;
 }
 
 #undef MAX_SIZE

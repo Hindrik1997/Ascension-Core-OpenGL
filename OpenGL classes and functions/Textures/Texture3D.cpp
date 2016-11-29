@@ -36,7 +36,7 @@ int Texture3D::getDepth() const {
     return m_depth;
 }
 
-Texture3D::~Texture3D() const {
+Texture3D::~Texture3D() {
     glDeleteTextures(1, &m_textureID);
 }
 

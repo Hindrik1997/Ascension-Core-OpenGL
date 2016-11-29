@@ -24,9 +24,13 @@ using std::vector;
 // GLFW
 #include <GLFW/glfw3.h>
 
-#include "Includes/glm/glm.hpp"
-#include "Includes/glm/gtc/matrix_transform.hpp"
-#include "Includes/glm/gtc/type_ptr.hpp"
+//GLM
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
+//SOIL
+#include <SOIL/SOIL.h>
 
 //Simpele macro om pointers te deleten enzo
 #define SAFE_PNTR_DEL(x) if(x != nullptr) delete x;

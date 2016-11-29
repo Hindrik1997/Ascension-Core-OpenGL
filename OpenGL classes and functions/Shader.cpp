@@ -160,6 +160,6 @@ Shader::~Shader() {
     glDeleteProgram(m_shaderProgram);
 }
 
-void Shader::use() const {
+void Shader::bind() const {
     glUseProgram(m_shaderProgram);
 }

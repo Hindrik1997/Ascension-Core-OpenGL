@@ -24,14 +24,18 @@ Texture1D::Texture1D(string _image, bool _generateMips) : m_sourceName(_image)
     SOIL_free_image_data(image);
 }
 
-GLuint Texture1D::getTextureID() {
+GLuint Texture1D::getTextureID() const {
     return m_textureID;
 }
 
-int Texture1D::getWidth() {
+int Texture1D::getWidth() const {
     return m_width;
 }
 
 Texture1D::~Texture1D() {
     glDeleteTextures(1, &m_textureID);
+}
+
+void Texture1D::bind() const {
+    glBindTexture(GL_TEXTURE_1D, m_textureID);
 }

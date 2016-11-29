@@ -17,10 +17,11 @@ private:
 public:
     Texture3D(string _image, bool _generateMips = true);
     ~Texture3D();
-    GLuint getTextureID();
-    int getWidth();
-    int getHeight();
-    int getDepth();
+    GLuint getTextureID() const;
+    int getWidth() const;
+    int getHeight() const;
+    int getDepth() const;
+    void bind() const;
 };
 
 

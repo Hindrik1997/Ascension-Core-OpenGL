@@ -15,8 +15,9 @@ private:
 public:
     Texture1D(string _image, bool _generateMips = true);
     ~Texture1D();
-    GLuint getTextureID();
-    int getWidth();
+    GLuint getTextureID() const;
+    int getWidth() const;
+    void bind() const;
 };
 
 

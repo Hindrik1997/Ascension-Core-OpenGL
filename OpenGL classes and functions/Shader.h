@@ -29,7 +29,7 @@ public:
     Shader(Shader&&) = default;
     Shader& operator=(Shader&&) = default;
 public:
-    void use() const;
+    void bind() const;
 };
 
 

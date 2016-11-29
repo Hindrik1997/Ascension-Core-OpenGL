@@ -20,18 +20,22 @@ Texture2D::Texture2D(string _image, bool _generateMips) : m_sourceName(_image)
     SOIL_free_image_data(image);
 }
 
-GLuint Texture2D::getTextureID() {
+GLuint Texture2D::getTextureID() const {
     return m_textureID;
 }
 
-int Texture2D::getWidth() {
+int Texture2D::getWidth() const {
     return m_width;
 }
 
-int Texture2D::getHeight() {
+int Texture2D::getHeight() const {
     return m_height;
 }
 
 Texture2D::~Texture2D() {
     glDeleteTextures(1, &m_textureID);
+}
+
+void Texture2D::bind() const {
+    glBindTexture(GL_TEXTURE_2D, m_textureID);
 }

@@ -16,7 +16,7 @@ using std::array;
 
 template<typename T, int SIZE = DEFAULT_SIZE>
 class Pool {
-    static_assert(SIZE <= MAX_SIZE && SIZE >= MIN_SIZE, "You must use a size between (and including) MIN_SIZE and (including) MAX_SIZE!");
+    static_assert(SIZE <= MAX_SIZE && SIZE >= MIN_SIZE, "You must bind a size between (and including) MIN_SIZE and (including) MAX_SIZE!");
 
 public:
     Pool();

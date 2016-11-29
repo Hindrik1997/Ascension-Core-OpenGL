@@ -20,22 +20,26 @@ Texture3D::Texture3D(string _image, bool _generateMips) : m_sourceName(_image)
     SOIL_free_image_data(image);
 }
 
-GLuint Texture3D::getTextureID() {
+GLuint Texture3D::getTextureID() const {
     return m_textureID;
 }
 
-int Texture3D::getWidth() {
+int Texture3D::getWidth() const {
     return m_width;
 }
 
-int Texture3D::getHeight() {
+int Texture3D::getHeight() const {
     return m_height;
 }
 
-int Texture3D::getDepth() {
+int Texture3D::getDepth() const {
     return m_depth;
 }
 
-Texture3D::~Texture3D() {
+Texture3D::~Texture3D() const {
     glDeleteTextures(1, &m_textureID);
+}
+
+void Texture3D::bind() const {
+    glBindTexture(GL_TEXTURE_3D, m_textureID);
 }

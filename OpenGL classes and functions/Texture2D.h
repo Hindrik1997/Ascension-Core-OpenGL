@@ -16,9 +16,10 @@ private:
 public:
     Texture2D(string _image, bool _generateMips = true);
     ~Texture2D();
-    GLuint getTextureID();
-    int getWidth();
-    int getHeight();
+    GLuint getTextureID() const;
+    int getWidth() const;
+    int getHeight() const;
+    void bind() const;
 };
 
 #endif //ASCENSION_CORE_TEXTURE2D_H

@@ -7,7 +7,7 @@
 
 class Renderer {
 public:
-    virtual void render() = 0;
+    virtual void render(float deltaTime) = 0;
     virtual bool processAPI(float deltaTime) = 0;
     inline virtual ~Renderer() = 0;
 };

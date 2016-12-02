@@ -30,6 +30,7 @@ public:
     Shader& operator=(Shader&&) = default;
 public:
     void bind() const;
+    GLuint getProgramID();
 };
 
 

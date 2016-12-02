@@ -163,3 +163,7 @@ Shader::~Shader() {
 void Shader::bind() const {
     glUseProgram(m_shaderProgram);
 }
+
+GLuint Shader::getProgramID() {
+    return m_shaderProgram;
+}

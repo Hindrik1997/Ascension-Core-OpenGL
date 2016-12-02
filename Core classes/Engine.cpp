@@ -3,7 +3,8 @@
 //
 
 #include "Engine.h"
-#include "../OpenGL classes and functions/OpenGLRenderer.h"
+#include "../OpenGL classes and functions/Core/OpenGLRenderer.h"
+#include "../OpenGL classes and functions/RenderModes/RenderModes.h"
 
 void Engine::run() {
 
@@ -29,12 +30,12 @@ void Engine::run() {
             break;
         }
 
-        m_renderer->render();
+        m_renderer->render(deltaTime);
     }
 }
 
 Engine::Engine() {
-    m_renderer = new OpenGLRenderer();
+    m_renderer = new OpenGLRenderer(RenderModes::FORWARD);
 }
 
 Engine::~Engine() {

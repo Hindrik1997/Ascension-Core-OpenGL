@@ -3,11 +3,10 @@ project(Ascension-Core)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
-link_directories("${PROJECT_SOURCE_DIR}/Libs/SOIL")
 include_directories("${PROJECT_SOURCE_DIR}/Includes/")
 
 
-link_libraries(libGLEW.a glfw3.a libSOIL.a GL GLU X11 Xxf86vm dl Xinerama Xcursor pthread Xi Xrandr freetype assimp libIL.so)
+link_libraries(GLEW libglfw.so libSOIL.a GL GLU X11 Xxf86vm dl Xinerama Xcursor pthread Xi Xrandr freetype assimp)
 
 set(SOURCE_FILES
         "main.cpp"
@@ -49,8 +48,7 @@ set(SOURCE_FILES
         "OpenGL classes and functions/RenderModes/ForwardRenderMode.h"
         "OpenGL classes and functions/PostProcessing/PostProcessing.h"
         "OpenGL classes and functions/PostProcessing/PostProcessing.cpp"
-        "OpenGL classes and functions/RenderModes/RenderModes.h"
 
-        "OpenGL classes and functions/OpenGLMesh.cpp" "OpenGL classes and functions/OpenGLMesh.h")
+        "OpenGL classes and functions/OpenGLMesh.cpp" "OpenGL classes and functions/OpenGLMesh.h" "Core classes/Console.h")
 
 add_executable(Ascension-Core ${SOURCE_FILES})

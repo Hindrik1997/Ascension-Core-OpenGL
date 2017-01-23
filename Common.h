@@ -12,14 +12,9 @@
 #include <stdint.h>
 
 using std::string;
-using std::cout;
-using std::cin;
-using std::endl;
 using std::array;
 using std::vector;
 
-// GLEW as static lib
-#define GLEW_STATIC
 #include <GL/glew.h>
 // GLFW
 #include <GLFW/glfw3.h>

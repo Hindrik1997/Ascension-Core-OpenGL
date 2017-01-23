@@ -10,7 +10,6 @@
 
 #include "../../Common.h"
 #include "../../Core classes/Renderer.h"
-#include "../RenderModes/RenderModes.h"
 
 class OpenGLRenderMode;
 
@@ -19,12 +18,15 @@ private:
     GLFWwindow* m_window = nullptr;
     OpenGLRenderMode* m_renderMode = nullptr;
 public:
-    OpenGLRenderer(RenderModes mode);
+    OpenGLRenderer();
     ~OpenGLRenderer();
 public:
     void render(float deltaTime) override;
     bool processAPI(float deltaTime) override;
     void swapBuffers();
+public:
+    void setRenderMode(OpenGLRenderMode& renderMode);
+    const OpenGLRenderMode& getRenderMode();
 };
 
 

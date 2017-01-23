@@ -21,10 +21,10 @@ PostProcessing::PostProcessing()
 {
     GLfloat quadVertices[] = {
             // Positions        // Texture Coords
-            -1.0f, 1.0f, 0.0f, 0.0f, 1.0f,
-            -1.0f, -1.0f, 0.0f, 0.0f, 0.0f,
-            1.0f, 1.0f, 0.0f, 1.0f, 1.0f,
-            1.0f, -1.0f, 0.0f, 1.0f, 0.0f,
+            -1.0f,   1.0f,  0.0f,   0.0f, 1.0f,
+            -1.0f,  -1.0f,  0.0f,   0.0f, 0.0f,
+             1.0f,   1.0f,  0.0f,   1.0f, 1.0f,
+             1.0f,  -1.0f,  0.0f,   1.0f, 0.0f,
     };
 
     glGenVertexArrays(1, &m_quadVAO);

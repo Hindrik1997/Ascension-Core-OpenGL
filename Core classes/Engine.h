@@ -9,25 +9,17 @@
 #include "Clock.h"
 #include "Renderer.h"
 #include "../Data Storage/CacheOptimizedStorage.h"
-
-struct GameObject {
-
-    GameObject(int a,short b){ this->a = a; this->b = b; }
-
-    int a;
-    short b;
-};
+#include "../OpenGL classes and functions/RenderModes/ForwardRenderMode.h"
 
 class Engine {
 public:
     Engine();
     ~Engine();
 private:
-    CacheOptimizedStorage<GameObject> m_objects;
-
-    bool m_Quit = false;
+    bool m_quit = false;
     Clock m_internalClock;
     Renderer* m_renderer = nullptr;
+    ForwardRenderMode* m_forward = nullptr;
 public:
     void run();
 };

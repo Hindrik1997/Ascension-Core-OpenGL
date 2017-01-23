@@ -5,6 +5,7 @@
 //#include "GLFWFunctions.h"
 #include "OpenGLRenderer.h"
 #include "OpenGLRenderMode.h"
+#include "../../Core classes/Console.h"
 #include "../RenderModes/ForwardRenderMode.h"
 
 bool OpenGLRenderer::processAPI(float deltaTime) {
@@ -27,7 +28,7 @@ bool OpenGLRenderer::processAPI(float deltaTime) {
     return true;
 }
 
-OpenGLRenderer::OpenGLRenderer(RenderModes mode)
+OpenGLRenderer::OpenGLRenderer()
 {
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -38,7 +39,7 @@ OpenGLRenderer::OpenGLRenderer(RenderModes mode)
     m_window = glfwCreateWindow(WINDOW_SIZE_X, WINDOW_SIZE_Y, "Ascension Engine", nullptr, nullptr);
     if (m_window == nullptr)
     {
-        cout << "Window creation failed!" << endl;
+        Console::printLine("Window creation failed!");
         glfwTerminate();
         throw("Initialization failed!");
     }
@@ -52,28 +53,18 @@ OpenGLRenderer::OpenGLRenderer(RenderModes mode)
     glewExperimental = GL_TRUE;
     if(glewInit() != GLEW_OK)
     {
-        cout << "GLEW init failed!" << endl;
+        Console::printLine("GLEW init failed!");
     }
 
     if (!GLEW_VERSION_4_5) {
+        Console::printLine("OpenGL 4.5 API is not available, terminating...");
         throw std::runtime_error("OpenGL 4.5 API is not available.");
     }
 
-
-
     glViewport(0, 0, WINDOW_SIZE_X, WINDOW_SIZE_Y);
-    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
-    switch(mode)
-    {
-        case RenderModes::FORWARD:
-
-            m_renderMode = new ForwardRenderMode();
-
-            break;
-    }
-
-
+    m_renderMode = new NullRenderMode();
     if(m_renderMode != nullptr)
         m_renderMode->initialize();
 }
@@ -89,4 +80,12 @@ void OpenGLRenderer::render(float deltaTime) {
 
 void OpenGLRenderer::swapBuffers() {
     glfwSwapBuffers(m_window);
+}
+
+void OpenGLRenderer::setRenderMode(OpenGLRenderMode& renderMode) {
+    m_renderMode = &renderMode;
+}
+
+const OpenGLRenderMode& OpenGLRenderer::getRenderMode() {
+    return *m_renderMode;
 }

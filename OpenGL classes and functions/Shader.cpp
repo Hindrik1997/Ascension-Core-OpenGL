@@ -3,6 +3,7 @@
 //
 
 #include "Shader.h"
+#include "../Core classes/Console.h"
 #include <fstream>
 
 GLuint Shader::loadVertexShader(const string _shader) {
@@ -26,7 +27,7 @@ GLuint Shader::loadVertexShader(const string _shader) {
     if(!success)
     {
         glGetShaderInfoLog(shader, debugBufSize, NULL, debugMsg);
-        cout << debugMsg << endl;
+        Console::printLine(debugMsg);
         throw "FAILED COMPILATION VERTEXSHADER";
     }
     return shader;
@@ -53,7 +54,7 @@ GLuint Shader::loadFragmentShader(const string _shader) {
     if(!success)
     {
         glGetShaderInfoLog(shader, debugBufSize, NULL, debugMsg);
-        cout << debugMsg << endl;
+        Console::printLine(debugMsg);
         throw "FAILED COMPILATION VERTEXSHADER";
     }
     return shader;
@@ -80,7 +81,7 @@ GLuint Shader::loadGeometryShader(const string _shader) {
     if(!success)
     {
         glGetShaderInfoLog(shader, debugBufSize, NULL, debugMsg);
-        cout << debugMsg << endl;
+        Console::printLine(debugMsg);
         throw "FAILED COMPILATION VERTEXSHADER";
     }
     return shader;
@@ -105,7 +106,7 @@ GLuint Shader::compileShaderProgram(const string _vertexShader, const string _fr
     if(!success)
     {
         glGetShaderInfoLog(shaderID, debugBufSize, NULL, debugMsg);
-        cout << debugMsg << endl;
+        Console::printLine(debugMsg);
         throw "FAILED LINKING SHADERPROGRAM";
     }
 
@@ -136,7 +137,7 @@ GLuint Shader::compileShaderProgram(const string _vertexShader, const string _ge
     if(!success)
     {
         glGetShaderInfoLog(shaderID, debugBufSize, NULL, debugMsg);
-        cout << debugMsg << endl;
+        Console::printLine(debugMsg);
         throw "FAILED LINKING SHADERPROGRAM";
     }
 

@@ -7,6 +7,7 @@
 #include "../Core/GLFWFunctions.h"
 #include "../OpenGLMesh.h"
 #include "../../Procedural Generation/ProceduralMeshGeneration.h"
+#include "../../Core classes/Console.h"
 
 OpenGLMesh* mesh;
 Shader* shader;
@@ -15,7 +16,6 @@ Shader* shader;
 void ForwardRenderMode::render(OpenGLRenderer& renderer, float deltaTime) {
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-
     //if hdr is enabled, render scene to this buffer!
     if(m_isHDRenabled == GL_TRUE)
     {
@@ -41,7 +41,6 @@ void ForwardRenderMode::render(OpenGLRenderer& renderer, float deltaTime) {
         glUniform1f(glGetUniformLocation(m_hdrShader.getProgramID(), "exposure"), m_exposure);
         m_postProcessing.renderFullScreenQuad();
     }
-
     renderer.swapBuffers();
 }
 
@@ -55,11 +54,11 @@ void ForwardRenderMode::initialize() {
 
     enableHDR();
 
-    mesh = new OpenGLMesh(ProceduralMeshGeneration::GenerateCone(1.0f, 1.0f, 1000));
+    mesh = new OpenGLMesh(ProceduralMeshGeneration::GenerateCone(1.0f, 1.0f, 10));
 
     shader = new Shader("../Shaders/vertex_shader.glsl","../Shaders/fragment_shader.glsl");
 
-
+    Console::printLine("Forward rendermode initialized");
 }
 
 void ForwardRenderMode::enableHDR() {
@@ -80,7 +79,7 @@ void ForwardRenderMode::enableHDR() {
 
     //Check the FBO
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-        cout << "Framebuffer not complete!" << endl;
+        Console::printLine("Framebuffer not complete!");
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
@@ -88,14 +87,9 @@ void ForwardRenderMode::enableHDR() {
 }
 
 void ForwardRenderMode::disableHDR() {
-
-
-
-
-
     m_isHDRenabled = GL_FALSE;
 }
 
 ForwardRenderMode::ForwardRenderMode() {
-
+    enableHDR();
 }

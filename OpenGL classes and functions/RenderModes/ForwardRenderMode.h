@@ -16,8 +16,6 @@ private:
     GLuint m_hdrTexColorBuffer = 0;
     Shader m_hdrShader = Shader("../Shaders/hdr_vertex.glsl","../Shaders/hdr_fragment.glsl");
     GLfloat m_exposure = 1.0f;
-
-
     PostProcessing m_postProcessing;
 public:
     ForwardRenderMode();
@@ -28,8 +26,6 @@ public:
 
     void enableHDR();
     void disableHDR();
-
-
 };
 
 

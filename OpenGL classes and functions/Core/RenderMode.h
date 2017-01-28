@@ -6,22 +6,22 @@
 #define ASCENSION_CORE_OPENGLRENDERMODE_H
 
 #include "../../Common.h"
-#include "OpenGLRenderer.h"
+#include "Renderer.h"
 
-class OpenGLRenderer;
+class Renderer;
 
-class OpenGLRenderMode {
+class RenderMode {
 public:
     virtual void initialize() = 0;
-    virtual void render(OpenGLRenderer &renderer, float deltaTime) = 0;
+    virtual void render(Renderer &renderer, float deltaTime) = 0;
 };
 
-class NullRenderMode : public OpenGLRenderMode {
+class NullRenderMode : public RenderMode {
 public:
     void initialize() override {
         std::cout << "NULL rendermode initialized. Swallow drawing..." << std::endl;
     }
-    void render(OpenGLRenderer &renderer, float deltaTime) override {
+    void render(Renderer &renderer, float deltaTime) override {
         //Swallow it
     }
 };

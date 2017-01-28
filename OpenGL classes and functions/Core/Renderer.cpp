@@ -3,12 +3,12 @@
 //
 
 //#include "GLFWFunctions.h"
-#include "OpenGLRenderer.h"
-#include "OpenGLRenderMode.h"
+#include "Renderer.h"
+#include "RenderMode.h"
 #include "../../Core classes/Console.h"
 #include "../RenderModes/ForwardRenderMode.h"
 
-bool OpenGLRenderer::processAPI(float deltaTime) {
+bool Renderer::processAPI(float deltaTime) {
 
     bool shouldClose = glfwWindowShouldClose(m_window) > 0;
     if(shouldClose)
@@ -28,11 +28,11 @@ bool OpenGLRenderer::processAPI(float deltaTime) {
     return true;
 }
 
-OpenGLRenderer::OpenGLRenderer()
+Renderer::Renderer()
 {
     glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
@@ -45,6 +45,7 @@ OpenGLRenderer::OpenGLRenderer()
     }
     glfwMakeContextCurrent(m_window);
 
+    Console::printLine("OpenGL Rendering initialized");
     std::cout << "OpenGL version: " << glGetString(GL_VERSION) << std::endl;
     std::cout << "GLSL version: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
     std::cout << "Vendor: " << glGetString(GL_VENDOR) << std::endl;
@@ -56,36 +57,34 @@ OpenGLRenderer::OpenGLRenderer()
         Console::printLine("GLEW init failed!");
     }
 
+    /*
     if (!GLEW_VERSION_4_5) {
         Console::printLine("OpenGL 4.5 API is not available, terminating...");
         throw std::runtime_error("OpenGL 4.5 API is not available.");
     }
+     */
 
     glViewport(0, 0, WINDOW_SIZE_X, WINDOW_SIZE_Y);
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-
-    m_renderMode = new NullRenderMode();
-    if(m_renderMode != nullptr)
-        m_renderMode->initialize();
 }
 
-OpenGLRenderer::~OpenGLRenderer() {
+Renderer::~Renderer() {
     glfwTerminate();
 }
 
-void OpenGLRenderer::render(float deltaTime) {
+void Renderer::render(float deltaTime) {
     if(m_renderMode != nullptr)
         m_renderMode->render(*this, deltaTime);
 }
 
-void OpenGLRenderer::swapBuffers() {
+void Renderer::swapBuffers() {
     glfwSwapBuffers(m_window);
 }
 
-void OpenGLRenderer::setRenderMode(OpenGLRenderMode& renderMode) {
+void Renderer::setRenderMode(RenderMode& renderMode) {
     m_renderMode = &renderMode;
 }
 
-const OpenGLRenderMode& OpenGLRenderer::getRenderMode() {
+const RenderMode& Renderer::getRenderMode() {
     return *m_renderMode;
 }

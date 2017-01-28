@@ -7,7 +7,6 @@
 
 #include "../Common.h"
 #include "Clock.h"
-#include "Renderer.h"
 #include "../Data Storage/CacheOptimizedStorage.h"
 #include "../OpenGL classes and functions/RenderModes/ForwardRenderMode.h"
 

@@ -13,7 +13,7 @@ OpenGLMesh* mesh;
 Shader* shader;
 
 
-void ForwardRenderMode::render(OpenGLRenderer& renderer, float deltaTime) {
+void ForwardRenderMode::render(Renderer& renderer, float deltaTime) {
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
     //if hdr is enabled, render scene to this buffer!

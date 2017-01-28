@@ -20,10 +20,10 @@ void Engine::run() {
 }
 
 Engine::Engine() {
-    m_renderer = new OpenGLRenderer();
+    m_renderer = new Renderer();
     m_forward = new ForwardRenderMode();
     m_forward->initialize();
-    static_cast<OpenGLRenderer*>(m_renderer)->setRenderMode(*m_forward);
+    m_renderer->setRenderMode(*m_forward);
 }
 
 Engine::~Engine() {

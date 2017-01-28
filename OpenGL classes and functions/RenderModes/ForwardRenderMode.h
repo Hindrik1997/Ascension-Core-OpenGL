@@ -5,11 +5,11 @@
 #ifndef ASCENSION_CORE_FORWARDRENDERMODE_H
 #define ASCENSION_CORE_FORWARDRENDERMODE_H
 
-#include "../Core/OpenGLRenderMode.h"
+#include "../Core/RenderMode.h"
 #include "../PostProcessing/PostProcessing.h"
 #include "../Shader.h"
 
-class ForwardRenderMode : public OpenGLRenderMode {
+class ForwardRenderMode : public RenderMode {
 private:
     GLboolean m_isHDRenabled = GL_FALSE;
     GLuint m_hdrFBO = 0;
@@ -22,7 +22,7 @@ public:
 
     void initialize() override;
 
-    void render(OpenGLRenderer &renderer, float deltaTime) override;
+    void render(Renderer &renderer, float deltaTime) override;
 
     void enableHDR();
     void disableHDR();
